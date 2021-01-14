@@ -9,11 +9,11 @@ The version used here is 4.4.3.
 Please see the the installation guide below.
 
 -Python Requirements-
-pymongo
-flask
-requests
-json
-datetime
+-pymongo
+-flask
+-requests
+-json
+-datetime
 
 # Installation
 -MongoDb-
