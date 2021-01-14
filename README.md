@@ -30,6 +30,7 @@ Please see the the installation guide below.
   1. git clone https://github.com/CIEAB-Code/NextBus.git
   2. unpack folder
   3. At the commandline run: python nextbus.py
+  4. On the browser navigate to http://localhost:5000/data/
   
 # Buglist/Issue Fixes
 - Fixed issue with empty table after midnight when there are no buses present, table now shows an error.
