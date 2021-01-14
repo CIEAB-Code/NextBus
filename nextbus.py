@@ -37,14 +37,13 @@ def home():
     rows = get_bus_info()
     # if 'rows' returns data then this is passed to the html table, else the default empty data is passed
     if rows:
-        save_to_database(rows)
-        data_info = tuple(rows)
-        return render_template('home_page.html', data_info=data_info, headings=headings)
+        save_to_database()
+        return render_template('home_page.html', data_info=rows, headings=headings)
     else:
         return render_template('home_page.html', data_info=empty_data, headings=headings, info=error_message)
 
 
-def save_to_database(rows):
+def save_to_database():
     """Saves bus route information from API call to a local mongodb database."""
     # Get the current time
     date = datetime.now()
@@ -122,7 +121,7 @@ def get_bus_info():
             return None
 
 
- ### PAGE 2 ###
+    ### PAGE 2 ###
 
 
 def query_data(data_headings):
@@ -155,7 +154,6 @@ def query_data(data_headings):
         return None
 
 
-
 @app.route('/data/')
 def data_page():
     data_headings = ["Date Searched", "Time Searched", "Station Start", "Arrival Time", "Destination"]
@@ -166,7 +164,6 @@ def data_page():
         return render_template('data.html', all_data=ordered_data, headings=data_headings, error="")
     else:
         return render_template('data.html', all_data=empty_list, headings=data_headings, error=error)
-
 
 
 if __name__ == '__main__':
