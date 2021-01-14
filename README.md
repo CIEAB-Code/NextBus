@@ -1,6 +1,6 @@
 # NextBus
 Welcome to NextBus!
-This is a simple web application using TFL (Transport for London) API that retrieves the latest bus arrival times and stores to a database. 
+This is a simple Python3.8 web application using TFL (Transport for London) API that retrieves the latest bus arrival times and stores to a database. 
 
 # Dependencies
 -MongoDb-
