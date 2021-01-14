@@ -130,31 +130,43 @@ def query_data(data_headings):
 
     all_data = []
 
-    # Retrieve data from database.
-    col_headings = ['date_searched', 'time_searched', 'Station Name', 'Bus Arrival Time', 'Destination']
-    for title in col_headings:
-        for date in bus_col.find({}, {'_id': 0, title: 1}):
-            all_data.append(date[title])
+    # TO DO: Make except block specific.
+    try:
+        # Retrieve data from database.
+        col_headings = ['date_searched', 'time_searched', 'Station Name', 'Bus Arrival Time', 'Destination']
+        for title in col_headings:
+            for date in bus_col.find({}, {'_id': 0, title: 1}):
+                all_data.append(date[title])
 
-    # Format retrieved data
-    ordered_data = []
-    complete_row = []
-    for i in range(len(all_data[0])):
-        for a in range(len(data_headings)):
-            complete_row.append(all_data[a][i])
-        ordered_data.append(complete_row)
+        # Format retrieved data
+        ordered_data = []
         complete_row = []
+        for i in range(len(all_data[0])):
+            for a in range(len(data_headings)):
+                complete_row.append(all_data[a][i])
+            ordered_data.append(complete_row)
+            complete_row = []
 
-    ordered_data.reverse()
+        ordered_data.reverse()
+        return ordered_data
 
-    return ordered_data
+    except:
+        print("Error getting data from database")
+        return None
+
 
 
 @app.route('/data/')
 def data_page():
     data_headings = ["Date Searched", "Time Searched", "Station Start", "Arrival Time", "Destination"]
     ordered_data = query_data(data_headings)
-    return render_template('data.html', all_data=ordered_data, headings=data_headings)
+    empty_list = [['-', '-', '-', '-', '-']]
+    error = "There was an issue connecting with the database."
+    if ordered_data:
+        return render_template('data.html', all_data=ordered_data, headings=data_headings, error="")
+    else:
+        return render_template('data.html', all_data=empty_list, headings=data_headings, error=error)
+
 
 
 if __name__ == '__main__':
