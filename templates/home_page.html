@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>My Next Bus</title>
+    <link rel="stylesheet" href="/static/styles.css"/>
+</head>
+<body>
+    <center><h1>My Next Bus</h1></center>
+        <strong><nav>
+              <ul class="menu">
+                <li><a href="/data">Data Page</a></li>
+              </ul>
+            </nav></strong>
+    <center>
+        <button class="button button1"><a href = "/">Update Times</a></button>
+        <p>{{ info }}</p>
+        <table class ="table">
+            <tr class="table_header">
+                {% for header in headings %}
+                <th class="table_cell">{{ header }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in data_info %}
+            <tr class="table_row">
+                {% for cell in row %}
+                <td class="table_cell">{{ cell }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

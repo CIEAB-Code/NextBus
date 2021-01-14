@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Data</title>
+    <link rel="stylesheet" href="/static/styles.css"/>
+
+</head>
+<body>
+    <center><h1>Bus app data</h1></center>
+       <strong><nav>
+          <ul class="menu">
+            <li><a href="/">Home Page</a></li>
+          </ul>
+        </nav></strong>
+    <center>
+        <table class ="table">
+            <tr class="table_header">
+                {% for header in headings %}
+                <th class="table_cell">{{ header }}</th>
+                {% endfor %}
+            </tr>
+               {% for row in all_data %}
+            <tr class="table_row">
+                {% for cell in row %}
+                <td class="table_cell">{{ cell }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        </center>
+</body>
+</html>
