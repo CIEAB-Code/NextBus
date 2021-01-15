@@ -184,6 +184,7 @@ def data_page():
     else:
         return render_template('data.html', all_data=empty_list, headings=data_headings, error=error)
 
+
 @app.route('/morning/')
 def morning_page():
     data_headings = ["Date Searched", "Time Searched", "Station Start", "Arrival Time", "Destination"]
