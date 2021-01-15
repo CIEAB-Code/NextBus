@@ -154,18 +154,11 @@ def query_data(data_headings):
         return None
 
 def filter_morning(all_data):
-    all_data = all_data
     if all_data:
-        morning_rows = []
         datemask = "%H:%M"
         morning_start = datetime.strptime("05:00", datemask)
-        morning_end =  datetime.strptime("11:59", datemask)
-        for row in all_data:
-            time = datetime.strptime(row[1], datemask)
-            if time >= morning_start and time <=morning_end:
-                morning_rows.append(row)
-            else:
-                continue
+        morning_end = datetime.strptime("11:59", datemask)
+        morning_rows = [row for row in all_data if morning_start <= datetime.strptime(row[1], datemask) <= morning_end]
         return morning_rows
     else:
         return None
