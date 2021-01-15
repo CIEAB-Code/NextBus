@@ -163,6 +163,26 @@ def filter_morning(all_data):
     else:
         return None
 
+def filter_afternoon(all_data):
+    if all_data:
+        datemask = "%H:%M"
+        after_start = datetime.strptime("12:00", datemask)
+        after_end = datetime.strptime("16:59", datemask)
+        after_rows = [row for row in all_data if after_start <= datetime.strptime(row[1], datemask) <= after_end]
+        return after_rows
+    else:
+        return None
+
+def filter_evening(all_data):
+    if all_data:
+        datemask = "%H:%M"
+        eve_start = datetime.strptime("17:00", datemask)
+        eve_end = datetime.strptime("23:59", datemask)
+        eve_rows = [row for row in all_data if eve_start <= datetime.strptime(row[1], datemask) <= eve_end]
+        return eve_rows
+    else:
+        return None
+
 
 
 
@@ -187,6 +207,32 @@ def morning_page():
     morning_rows = filter_morning(ordered_data)
     if morning_rows:
         return render_template('data.html', all_data=morning_rows, headings=data_headings, error="")
+    else:
+        return render_template('data.html', all_data=empty_list, headings=data_headings, error=error)
+
+
+@app.route('/afternoon/')
+def afternoon_page():
+    data_headings = ["Date Searched", "Time Searched", "Station Start", "Arrival Time", "Destination"]
+    ordered_data = query_data(data_headings)
+    empty_list = [['-', '-', '-', '-', '-']]
+    error = "There was an issue connecting with the database."
+    after_rows = filter_afternoon(ordered_data)
+    if after_rows:
+        return render_template('data.html', all_data=after_rows, headings=data_headings, error="")
+    else:
+        return render_template('data.html', all_data=empty_list, headings=data_headings, error=error)
+
+
+@app.route('/evening/')
+def evening_page():
+    data_headings = ["Date Searched", "Time Searched", "Station Start", "Arrival Time", "Destination"]
+    ordered_data = query_data(data_headings)
+    empty_list = [['-', '-', '-', '-', '-']]
+    error = "There was an issue connecting with the database."
+    eve_rows = filter_evening(ordered_data)
+    if eve_rows:
+        return render_template('data.html', all_data=eve_rows, headings=data_headings, error="")
     else:
         return render_template('data.html', all_data=empty_list, headings=data_headings, error=error)
 
