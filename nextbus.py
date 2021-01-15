@@ -153,6 +153,25 @@ def query_data(data_headings):
         print("Error getting data from database")
         return None
 
+def filter_morning(all_data):
+    all_data = all_data
+    if all_data:
+        morning_rows = []
+        datemask = "%H:%M"
+        morning_start = datetime.strptime("05:00", datemask)
+        morning_end =  datetime.strptime("11:59", datemask)
+        for row in all_data:
+            time = datetime.strptime(row[1], datemask)
+            if time >= morning_start and time <=morning_end:
+                morning_rows.append(row)
+            else:
+                continue
+        return morning_rows
+    else:
+        return None
+
+
+
 
 @app.route('/data/')
 def data_page():
@@ -162,6 +181,18 @@ def data_page():
     error = "There was an issue connecting with the database."
     if ordered_data:
         return render_template('data.html', all_data=ordered_data, headings=data_headings, error="")
+    else:
+        return render_template('data.html', all_data=empty_list, headings=data_headings, error=error)
+
+@app.route('/morning/')
+def morning_page():
+    data_headings = ["Date Searched", "Time Searched", "Station Start", "Arrival Time", "Destination"]
+    ordered_data = query_data(data_headings)
+    empty_list = [['-', '-', '-', '-', '-']]
+    error = "There was an issue connecting with the database."
+    morning_rows = filter_morning(ordered_data)
+    if morning_rows:
+        return render_template('data.html', all_data=morning_rows, headings=data_headings, error="")
     else:
         return render_template('data.html', all_data=empty_list, headings=data_headings, error=error)
 
