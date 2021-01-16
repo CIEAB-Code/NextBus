@@ -45,3 +45,51 @@ background-color: #e5e5e5
 .table_cell {
     padding: 8px;
 }
+
+
+/* HEADER*/
+
+header {
+  background-color: #6495ED;
+  height: 35px;
+  width: 100%;
+  opacity: .9;
+  margin-bottom: 10px;
+}
+
+header h1.app_name {
+  margin: 0;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  float: left;
+}
+
+header h1.app_name:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+
+.menu {
+  float: right;
+  margin-top: 8px;
+}
+
+.menu li {
+  display: inline;
+}
+
+.menu li + li {
+  margin-left: 35px;
+}
+
+.menu li a {
+  color: #444;
+  text-decoration: none;
+}
