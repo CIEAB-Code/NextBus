@@ -2,8 +2,6 @@
   max-width: 960px;
   margin: auto;
 }
-.name {
-text-align: center;}
 
 .h2 {
 text-align: center;}
@@ -71,18 +69,24 @@ header h1.app_name:hover {
 }
 
 .container {
-  width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 
 
 .menu {
-  float: right;
+  display: inline-block
   margin-top: 8px;
+  align: right;
+  text-align: right;
+  margin-left: 35px;
+  margin-right: 5px;
+
 }
 
 .menu li {
-  display: inline;
+  display: inline-block;
+  align: right
 }
 
 .menu li + li {
@@ -93,3 +97,5 @@ header h1.app_name:hover {
   color: #444;
   text-decoration: none;
 }
+
+
