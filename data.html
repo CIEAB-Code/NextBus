@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Data</title>
+    <link rel="stylesheet" href="/static/styles.css"/>
+
+</head>
+<body>
+
+      <header>
+          <div class="container">
+              <h1 class="app_name">My Next Bus</h1>
+              <strong><nav>
+                  <ul class="menu">
+                      <li><a href="{{ url_for('home') }}">Home</a></li>
+                      <li><a href="{{ url_for('morning_page') }}">Morning Data</a></li>
+                      <li><a href="{{ url_for('afternoon_page') }}">Afternoon Data</a></li>
+                      <li><a href="{{ url_for('evening_page') }}">Evening Data</a></li>
+                  </ul>
+              </nav></strong>
+          </div>
+      </header>
+
+<center><h1>Bus app data</h1>
+    <p>{{ error}}</p>
+    <table class="table">
+        <tr class="table_header">
+            {% for header in headings %}
+            <th class="table_cell">{{ header }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in all_data %}
+        <tr class="table_row">
+            {% for cell in row %}
+            <td class="table_cell">{{ cell }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+</body>
+</html>

@@ -65,7 +65,6 @@ def save_to_database():
 
     # Add data to database collection
     if db_exists:
-
         found = tfl_db.bus_data.find()
 
         bus_time = bus_info_dict['Bus Arrival Time']
@@ -120,7 +119,6 @@ def get_bus_info():
         else:
             return None
 
-
     ### PAGE 2 ###
 
 
@@ -153,6 +151,7 @@ def query_data(data_headings):
         print("Error getting data from database")
         return None
 
+
 def filter_morning(all_data):
     if all_data:
         datemask = "%H:%M"
@@ -162,6 +161,7 @@ def filter_morning(all_data):
         return morning_rows
     else:
         return None
+
 
 def filter_afternoon(all_data):
     if all_data:
@@ -173,6 +173,7 @@ def filter_afternoon(all_data):
     else:
         return None
 
+
 def filter_evening(all_data):
     if all_data:
         datemask = "%H:%M"
@@ -182,8 +183,6 @@ def filter_evening(all_data):
         return eve_rows
     else:
         return None
-
-
 
 
 @app.route('/data/')
@@ -237,5 +236,10 @@ def evening_page():
         return render_template('data.html', all_data=empty_list, headings=data_headings, error=error)
 
 
+@app.route('/test')
+def about():
+    return render_template("test.html")
+
+
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
