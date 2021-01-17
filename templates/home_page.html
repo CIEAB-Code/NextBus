@@ -1,19 +1,17 @@
 {% extends 'base_page.html' %}
 {% block body %}
-<center>
-    <header>
-        <div class="container">
-            <h1 class="app_name"> My Next Bus</h1>
-            <strong>
-                <nav>
-                    <ul class="menu">
-                        <li><a href="/data">Data Page</a></li>
-                    </ul>
-                </nav>
-            </strong>
+<header>
+    <div class="container">
+        <h1 class="app_name"> My Next Bus</h1>
+        <div class="menu">
+            <a href="/data">Data Page</a>
         </div>
-    </header>
+    </div>
+</header>
+<center>
     <button class="button button1"><a href="/">Update Times</a></button>
+</center>
+<center>
     <p>{{ info }}</p>
     <table class="table">
         <tr class="table_header">
