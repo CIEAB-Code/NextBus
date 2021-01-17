@@ -236,10 +236,5 @@ def evening_page():
         return render_template('data.html', all_data=empty_list, headings=data_headings, error=error)
 
 
-@app.route('/test')
-def about():
-    return render_template("test.html")
-
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
