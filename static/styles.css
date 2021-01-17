@@ -3,9 +3,7 @@
   margin: auto;
 }
 
-.h2 {
-text-align: center;}
-
+/* Update Button style and colour transition time */
 .button {
   border: none;
   color: white;
@@ -19,42 +17,51 @@ text-align: center;}
   cursor: pointer;
 }
 
+/* Update Button set colours */
 .button1 {
   background-color: white;
   color: black;
   border: 2px solid #4CAF50;
 }
 
+/* Update button set colour on hover */
 .button1:hover {
   background-color: #4CAF50;
   color: white;
 }
+
+/* table border spacing */
 .table {
     border-spacing:0;
 }
+
+/* table even rows have grey background */
 .table_row:nth-child(even) {
 background-color: #e5e5e5
 }
 
+/* table header align text left */
 .table_header {
     text-align: left;
 }
 
+/* table cell set padding */
 .table_cell {
     padding: 8px;
 }
 
-
 /* HEADER*/
 
+/* Pale blue header bar*/
 header {
   background-color: #6495ED;
-  height: 35px;
+  height: 46px;
   width: 100%;
   opacity: .9;
   margin-bottom: 10px;
 }
 
+/*App title in header bar*/
 header h1.app_name {
   margin: 0;
   font-size: 1.7em;
@@ -73,29 +80,74 @@ header h1.app_name:hover {
   margin: 0 auto;
 }
 
+/* NAVBAR */
 
-.menu {
-  display: inline-block
-  margin-top: 8px;
-  align: right;
-  text-align: right;
-  margin-left: 35px;
-  margin-right: 5px;
-
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial;
 }
 
-.menu li {
-  display: inline-block;
-  align: right
-}
-
-.menu li + li {
-  margin-left: 35px;
-}
-
-.menu li a {
-  color: #444;
+/* Link inside the navbar */
+.menu a {
+  float: right;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: none;
 }
 
+/* The drop-down container */
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
 
+/* Drop-down button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* For vertical align on mobile phones? */
+  margin: 0; /* For vertical align on mobile phones? */
+}
+
+/* Add a green background color to drop-down button on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: green;
+}
+
+/* Drop-down content - hidden is default */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links in the drop-down */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Grey background color to drop-down links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Drop-down menu appears on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
