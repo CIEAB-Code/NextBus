@@ -25,6 +25,11 @@ empty_data = (
     ("-", "-", "-")
 )
 
+# Default data page table data.
+data_headings = ["Date\nSearched", "Time\nSearched", "Station\nStart", "Arrival\nTime", "Destination"]
+empty_list = [['-', '-', '-', '-', '-']]
+data_error = "There was an issue connecting with the database."
+
 # Set up dictionary for data on home page
 bus_info_dict = {"Station Name": [],
                  "Bus Arrival Time": [],
@@ -122,7 +127,7 @@ def get_bus_info():
     ### PAGE 2 ###
 
 
-def query_data(data_headings):
+def query_data():
     """Retrieves data from mongodb database and saves to a list."""
 
     all_data = []
@@ -187,53 +192,41 @@ def filter_evening(all_data):
 
 @app.route('/data/')
 def data_page():
-    data_headings = ["Date Searched", "Time Searched", "Station Start", "Arrival Time", "Destination"]
-    ordered_data = query_data(data_headings)
-    empty_list = [['-', '-', '-', '-', '-']]
-    error = "There was an issue connecting with the database."
+    ordered_data = query_data()
     if ordered_data:
         return render_template('data.html', all_data=ordered_data, headings=data_headings, error="")
     else:
-        return render_template('data.html', all_data=empty_list, headings=data_headings, error=error)
+        return render_template('data.html', all_data=empty_list, headings=data_headings, error=data_error)
 
 
 @app.route('/morning/')
 def morning_page():
-    data_headings = ["Date Searched", "Time Searched", "Station Start", "Arrival Time", "Destination"]
-    ordered_data = query_data(data_headings)
-    empty_list = [['-', '-', '-', '-', '-']]
-    error = "There was an issue connecting with the database."
+    ordered_data = query_data()
     morning_rows = filter_morning(ordered_data)
     if morning_rows:
         return render_template('data.html', all_data=morning_rows, headings=data_headings, error="")
     else:
-        return render_template('data.html', all_data=empty_list, headings=data_headings, error=error)
+        return render_template('data.html', all_data=empty_list, headings=data_headings, error=data_error)
 
 
 @app.route('/afternoon/')
 def afternoon_page():
-    data_headings = ["Date Searched", "Time Searched", "Station Start", "Arrival Time", "Destination"]
-    ordered_data = query_data(data_headings)
-    empty_list = [['-', '-', '-', '-', '-']]
-    error = "There was an issue connecting with the database."
+    ordered_data = query_data()
     after_rows = filter_afternoon(ordered_data)
     if after_rows:
         return render_template('data.html', all_data=after_rows, headings=data_headings, error="")
     else:
-        return render_template('data.html', all_data=empty_list, headings=data_headings, error=error)
+        return render_template('data.html', all_data=empty_list, headings=data_headings, error=data_error)
 
 
 @app.route('/evening/')
 def evening_page():
-    data_headings = ["Date Searched", "Time Searched", "Station Start", "Arrival Time", "Destination"]
-    ordered_data = query_data(data_headings)
-    empty_list = [['-', '-', '-', '-', '-']]
-    error = "There was an issue connecting with the database."
+    ordered_data = query_data()
     eve_rows = filter_evening(ordered_data)
     if eve_rows:
         return render_template('data.html', all_data=eve_rows, headings=data_headings, error="")
     else:
-        return render_template('data.html', all_data=empty_list, headings=data_headings, error=error)
+        return render_template('data.html', all_data=empty_list, headings=data_headings, error=data_error)
 
 
 if __name__ == '__main__':
