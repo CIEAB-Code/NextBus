@@ -10,6 +10,10 @@ bus_col = tfl_db['bus_data']
 # Instantiating Flask class
 app = Flask(__name__)
 
+# Error messages
+data_error = "No information available at this time."
+error_message = "No information available."
+
 
 @app.route('/')
 def home():
