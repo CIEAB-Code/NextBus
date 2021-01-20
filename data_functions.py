@@ -1,7 +1,7 @@
 import requests
 import json
 from datetime import datetime
-from nextbus import client, tfl_db, bus_col, app
+from nextbus import tfl_db, bus_col
 
 # Variables
 url = r"https://api.tfl.gov.uk/StopPoint/490009333W/arrivals"
