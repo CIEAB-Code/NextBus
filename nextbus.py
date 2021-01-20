@@ -65,8 +65,7 @@ def save_to_database():
             # creates new database collection if it doesn't already exist.
             bus_info_dict['date_searched'] = [date_name]
             bus_info_dict['time_searched'] = [date_time]
-            result = bus_col.insert_one(bus_info_dict)
-            print(result)
+            bus_col.insert_one(bus_info_dict)
 
     # Add data to database collection
     if db_exists:
@@ -98,7 +97,7 @@ def get_bus_info():
         rows = []
 
         # Update rows.
-        for i in range(len(parsed)):
+        for i, result in enumerate(parsed):
             rows.append((parsed[i]["stationName"], parsed[i]["expectedArrival"][11:16], parsed[i]["destinationName"]))
 
         # Orders results in order of earliest arrival time
@@ -106,12 +105,12 @@ def get_bus_info():
             time = rows[0][1]
             datemask = "%H:%M"
             earliest_time = datetime.strptime(time, datemask)
-            for row in range(len(rows)):
-                new_time = datetime.strptime(rows[row][1], datemask)
+            for i, row in enumerate(rows):
+                new_time = datetime.strptime(row[1], datemask)
                 if new_time < earliest_time:
                     earliest_time = new_time
-                    rows.insert(0, rows[row])
-                    del rows[row + 1]
+                    rows.insert(0, rows[i])
+                    del rows[i + 1]
                 else:
                     continue
 
@@ -143,8 +142,8 @@ def query_data():
         # Format retrieved data
         ordered_data = []
         complete_row = []
-        for i in range(len(all_data[0])):
-            for a in range(len(data_headings)):
+        for i, result in enumerate(all_data[0]):
+            for a, heading in enumerate(data_headings):
                 complete_row.append(all_data[a][i])
             ordered_data.append(complete_row)
             complete_row = []
@@ -158,6 +157,7 @@ def query_data():
 
 
 def filter_morning(all_data):
+    """ Filters results from database and returns data collected between 05:00 and 11:59am"""
     if all_data:
         datemask = "%H:%M"
         morning_start = datetime.strptime("05:00", datemask)
@@ -169,6 +169,7 @@ def filter_morning(all_data):
 
 
 def filter_afternoon(all_data):
+    """ Filters results from database and returns data collected between 12:00 and 16:59am"""
     if all_data:
         datemask = "%H:%M"
         after_start = datetime.strptime("12:00", datemask)
@@ -180,6 +181,7 @@ def filter_afternoon(all_data):
 
 
 def filter_evening(all_data):
+    """ Filters results from database and returns data collected between 17:00 and 23:59am"""
     if all_data:
         datemask = "%H:%M"
         eve_start = datetime.strptime("17:00", datemask)
@@ -203,7 +205,8 @@ def data_page():
 def morning_page():
     ordered_data = query_data()
     morning_rows = filter_morning(ordered_data)
-    if morning_rows:
+    if morning_rows and len(morning_rows) > 0:
+        print(len(morning_rows))
         return render_template('data.html', all_data=morning_rows, headings=data_headings, error="")
     else:
         return render_template('data.html', all_data=empty_list, headings=data_headings, error=data_error)
