@@ -19,7 +19,7 @@ empty_data = (
 # Default data page table data.
 data_headings = ["Date\nSearched", "Time\nSearched", "Station\nStart", "Arrival\nTime", "Destination"]
 empty_list = [['-', '-', '-', '-', '-']]
-data_error = "There was an issue connecting with the database."
+data_error = "No information available."
 
 # Set up dictionary for data on home page
 bus_info_dict = {"Station Name": [],
