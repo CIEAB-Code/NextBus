@@ -4,7 +4,6 @@ from datetime import datetime
 from nextbus import client, tfl_db, bus_col, app
 
 # Variables
-error_message = "No information available."
 url = r"https://api.tfl.gov.uk/StopPoint/490009333W/arrivals"
 db_exists = False
 
@@ -19,7 +18,6 @@ empty_data = (
 # Default data page table data.
 data_headings = ["Date\nSearched", "Time\nSearched", "Station\nStart", "Arrival\nTime", "Destination"]
 empty_list = [['-', '-', '-', '-', '-']]
-data_error = "No information available."
 
 # Set up dictionary for data on home page
 bus_info_dict = {"Station Name": [],
