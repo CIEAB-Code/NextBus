@@ -4,6 +4,9 @@ import requests
 
 
 class TestNextBus(unittest.TestCase):
+    def setUp(self):
+        requests.get('http://localhost:5000')
+        
     def test_homepage(self):
         response = requests.get('http://localhost:5000')
         self.assertEqual(response.status_code, 200)
@@ -21,17 +24,14 @@ class TestNextBus(unittest.TestCase):
         self.assertIsNotNone(formatted_data)
 
     def test_filter_morning(self):
-        requests.get('http://localhost:5000')
         formatted_data = nextbus.filter_morning(nextbus.query_data())
         self.assertIsNotNone(formatted_data)
 
     def test_filter_afternoon(self):
-        requests.get('http://localhost:5000')
         formatted_data = nextbus.filter_afternoon(nextbus.query_data())
         self.assertIsNotNone(formatted_data)
 
     def test_filter_evening(self):
-        requests.get('http://localhost:5000')
         formatted_data = nextbus.filter_evening(nextbus.query_data())
         self.assertIsNotNone(formatted_data)
 
