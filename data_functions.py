@@ -74,8 +74,8 @@ def get_bus_info():
         rows = []
 
         # Update rows.
-        for i, result in enumerate(parsed):
-            rows.append((parsed[i]["stationName"], parsed[i]["expectedArrival"][11:16], parsed[i]["destinationName"]))
+        for result in parsed:
+            rows.append((result["stationName"], result["expectedArrival"][11:16], result["destinationName"]))
 
         # Orders results in order of earliest arrival time
         if len(rows) >= 1:
