@@ -82,12 +82,12 @@ def get_bus_info():
             time = rows[0][1]
             datemask = "%H:%M"
             earliest_time = datetime.strptime(time, datemask)
-            for i, row in enumerate(rows):
+            for row in rows:
                 new_time = datetime.strptime(row[1], datemask)
                 if new_time < earliest_time:
                     earliest_time = new_time
-                    rows.insert(0, rows[i])
-                    del rows[i + 1]
+                    rows.insert(0, row)
+                    rows.remove(row)
                 else:
                     continue
 
